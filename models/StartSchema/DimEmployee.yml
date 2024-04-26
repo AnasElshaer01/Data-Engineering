@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: dim_employee
+    columns:
+      - name: employeeNumber
+        description: "Employee number"
+        tests:
+          - unique
+      - name: lastName
+        description: "Last name"
+        tests:
+          - not_null
+      - name: firstName
+        description: "First name"
+        tests:
+          - not_null
+      - name: extension
+        description: "Extension"
+      - name: email
+        description: "Email address"
+      - name: officeCode
+        description: "Office code"
+        tests:
+          - not_null
+      - name: reportsTo
+        description: "Employee's manager"
+      - name: jobTitle
+        description: "Job title"
+
+    sources:
+      - name: classicmodels
+        tables:
+          - name: employees

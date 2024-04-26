@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Create the dim_customers table"
+    columns:
+      - name: customerNumber
+        description: "Customer number"
+        tests:
+          - unique
+      - name: customerName
+        description: "Customer name"
+      - name: contactLastName
+        description: "Contact last name"
+      - name: contactFirstName
+        description: "Contact first name"
+      - name: phone
+        description: "Phone number"
+      - name: addressLine1
+        description: "Address line 1"
+      - name: addressLine2
+        description: "Address line 2"
+      - name: city
+        description: "City"
+      - name: state
+        description: "State"
+      - name: postalCode
+        description: "Postal code"
+      - name: country
+        description: "Country"
+      - name: salesRepEmployeeNumber
+        description: "Sales representative employee number"
+      - name: creditLimit
+        description: "Credit limit"
+        type: numeric
+
+    # Specify the source table and database
+    sources:
+      - name: classicmodels
+        tables:
+          - name: customers
+
+    # Specify the destination table and schema
+    quoting:
+      database: classicmodels
+      schema: MyDataHouse
+      identifier: dim_customers

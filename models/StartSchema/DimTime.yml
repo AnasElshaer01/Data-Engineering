@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: dim_time
+    description: "Create the dim_time table"
+    columns:
+      - name: timeId
+        description: "Time ID"
+        tests:
+          - unique
+      - name: orderDate
+        description: "Order date"
+        type: timestamp
+      - name: year
+        description: "Year"
+        type: int
+      - name: month
+        description: "Month"
+        type: int
+      - name: day
+        description: "Day"
+        type: int
+
+    # Specify the source table and database
+    sources:
+      - name: classicmodels
+        tables:
+          - name: orders
+
+    # Specify the destination table and schema
+    quoting:
+      database: classicmodels
+      schema: MyDataHouse
+      identifier: dim_time

@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: dim_location
+    description: "Create the dim_location table"
+    columns:
+      - name: officeCode
+        description: "Office code"
+        tests:
+          - unique
+      - name: city
+        description: "City"
+      - name: phone
+        description: "Phone number"
+      - name: addressLine1
+        description: "Address line 1"
+      - name: state
+        description: "State"
+      - name: country
+        description: "Country"
+      - name: territory
+        description: "Territory"
+
+    # Specify the source table and database
+    sources:
+      - name: classicmodels
+        tables:
+          - name: offices
+
+    # Specify the destination table and schema
+    quoting:
+      database: classicmodels
+      schema: MyDataHouse
+      identifier: dim_location

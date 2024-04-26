@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Create the fact_sales table"
+    columns:
+      - name: orderNumber
+        description: "Order number"
+        tests:
+          - unique
+      - name: productCode
+        description: "Product code"
+      - name: priceEach
+        description: "Price each"
+        type: numeric
+      - name: quantityOrdered
+        description: "Quantity ordered"
+        type: int
+      - name: customerNumber
+        description: "Customer number"
+        type: int
+        foreignKey:
+          table: dim_product
+          column: productCode
+
+    # Specify the source tables and database
+    sources:
+      - name: classicmodels
+        tables:
+          - name: orderdetails
+          - name: orders
+
+    # Specify the destination table and schema
+    quoting:
+      database: classicmodels
+      schema: MyDataHouse
+      identifier: fact_sales

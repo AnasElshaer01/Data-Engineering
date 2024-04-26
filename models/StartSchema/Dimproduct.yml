@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: "Create the dim_product table"
+    columns:
+      - name: productCode
+        description: "Product code"
+        tests:
+          - unique
+      - name: productName
+        description: "Product name"
+      - name: productLine
+        description: "Product line"
+      - name: productScale
+        description: "Product scale"
+      - name: productVendor
+        description: "Product vendor"
+      - name: productDescription
+        description: "Product description"
+      - name: quantityInStock
+        description: "Quantity in stock"
+        type: int
+      - name: buyPrice
+        description: "Buy price"
+        type: numeric
+      - name: MSRP
+        description: "Manufacturer's suggested retail price"
+        type: numeric
+
+    # Specify the source table and database
+    sources:
+      - name: classicmodels
+        tables:
+          - name: products
+
+    # Specify the destination table and schema
+    quoting:
+      database: classicmodels
+      schema: MyDataHouse
+      identifier: dim_product
